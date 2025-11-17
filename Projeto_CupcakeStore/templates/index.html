@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupcake Store - Vitrine</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>CUPCAKE STORE</h1>
+
+        <nav class="navbar">
+		
+            <a href="/carrinho">CARRINHO</a>
+
+            {% if cliente_nome %}
+                <span class="user-msg">Olá, {{ cliente_nome }}!</span>
+                <a href="/logout" style="color: #666; font-weight: 600; font-size: 0.9em;">SAIR</a>
+            {% else %}
+                <a href="/login" style="background-color: #5E4B56; color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9em;">LOGIN</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <section class="hero-banner">
+        <div class="hero-content">
+            <h1>Explore Delícias</h1>
+            <p>Descubra uma variedade de cupcakes gourmet feitos especialmente para você.</p>
+            <a href="#vitrine" class="btn-hero">Ver Mais</a>
+        </div>
+    </section>
+
+    <main id="vitrine">
+        <h2>NOSSOS CUPCAKES</h2>
+        <div class="vitrine">
+
+            {% for cupcake in cupcakes %}
+                <div class="produto">
+                    <img src="{{ url_for('static', filename='img/' + cupcake.imagem) }}" alt="{{ cupcake.nome }}">
+
+                    <h3>{{ cupcake.nome }}</h3>
+                    <p class="sabor">{{ cupcake.sabor }}</p>
+                    <p class="preco">R$ {{ "%.2f"|format(cupcake.preco|float) }}</p>
+
+                    <a href="/cupcake/{{ cupcake.id_cupcake }}" class="btn-detalhes">Ver Detalhes</a>
+                </div>
+            {% else %}
+                <p>Nenhum cupcake disponível no momento.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 10px;">
+            <p style="margin: 5px 0;"><strong>Cupcake Store</strong></p>
+            <p style="margin: 5px 0;">E-mail: contato@cupcakestore.com | Tel: (11) 3456-7890</p>
+        </div>
+
+        <div style="font-size: 0.8em; margin-top: 20px; opacity: 0.8;">
+            <p>© 2025 por Cupcake Store. Desenvolvido com Python.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

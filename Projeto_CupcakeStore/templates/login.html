@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Cadastro - Cupcake Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>CUPCAKE STORE</h1>
+        <nav class="navbar">
+            <a href="/">INÍCIO</a>
+            <a href="/carrinho">CARRINHO</a>
+
+            {% if cliente_nome %}
+                <span class="user-msg">Olá, {{ cliente_nome }}!</span>
+                <a href="/logout" style="color: #666; font-weight: 600; font-size: 0.9em;">SAIR</a>
+            {% else %}
+                <a href="/login" style="background-color: #5E4B56; color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9em;">LOGIN</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <div class="login-container">
+
+            <form action="/registrar" method="POST" class="form-cadastro">
+                <h2>CRIAR CONTA</h2>
+                <p>Crie sua conta para comprar.</p>
+
+                <label for="cpf_reg">CPF:</label>
+                <input type="text" id="cpf_reg" name="cpf" placeholder="Seu CPF (com . e -)" required>
+
+                <label for="nome_reg">Nome:</label>
+                <input type="text" id="nome_reg" name="nome" placeholder="Seu nome completo" required>
+
+                <label for="email_reg">E-mail:</label>
+                <input type="email" id="email_reg" name="email" placeholder="seu@email.com" required>
+
+                <label for="senha_reg">Senha:</label>
+                <input type="password" id="senha_reg" name="senha" required>
+
+                <label>
+                    <input type="checkbox" name="termos" required> Aceito os termos de Uso
+                </label>
+
+                <button type="submit" class="produto-a">CRIAR CONTA</button>
+            </form>
+
+            <hr>
+
+            <form action="/autenticar" method="POST" class="form-login">
+                <h2>LOGIN</h2>
+                <p>Já possui conta? Faça login.</p>
+
+                <label for="email_log">E-mail:</label>
+                <input type="email" id="email_log" name="email" placeholder="seu@email.com" required>
+
+                <label for="senha_log">Senha:</label>
+                <input type="password" id="senha_log" name="senha" required>
+
+                <button type="submit" class="produto-a">LOGIN</button>
+                <a href="#">Esqueci minha senha</a>
+            </form>
+
+        </div>
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 10px;">
+            <p style="margin: 5px 0;"><strong>Cupcake Store</strong></p>
+            <p style="margin: 5px 0;">E-mail: contato@cupcakestore.com | Tel: (11) 3456-7890</p>
+        </div>
+        <div style="font-size: 0.8em; margin-top: 20px; opacity: 0.8;">
+            <p>© 2025 por Cupcake Store. Desenvolvido com Python.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

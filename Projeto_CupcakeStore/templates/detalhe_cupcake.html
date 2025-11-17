@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cupcake.nome }} - Cupcake Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>CUPCAKE STORE</h1>
+        <nav class="navbar">
+            <a href="/">INÍCIO</a>
+            <a href="/carrinho">CARRINHO</a>
+
+            {% if cliente_nome %}
+                <span class="user-msg">Olá, {{ cliente_nome }}!</span>
+                <a href="/logout" style="color: #666; font-weight: 600; font-size: 0.9em;">SAIR</a>
+            {% else %}
+                <a href="/login" style="background-color: #5E4B56; color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9em;">LOGIN</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <div class="produto-detalhe" style="max-width: 600px; margin: 40px auto; padding: 20px; background: #fff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+
+            <img src="{{ url_for('static', filename='img/' + cupcake.imagem) }}" alt="{{ cupcake.nome }}" style="width: 100%; height: 300px; object-fit: cover; border-radius: 8px;">
+
+            <h2 style="color: #5E4B56; margin-top: 20px;">{{ cupcake.nome }}</h2>
+
+            <p><strong>Descrição:</strong> {{ cupcake.descricao }}</p>
+
+            <h3 style="color: #d9534f; font-size: 1.5em;">Valor: R$ {{ "%.2f"|format(cupcake.preco|float) }}</h3>
+
+            <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+            <form action="/adicionar_ao_carrinho" method="POST">
+                <input type="hidden" name="cupcake_id" value="{{ cupcake.id_cupcake }}">
+
+                <button type="submit" class="btn-checkout" style="width: 100%;">ADICIONAR AO CARRINHO</button>
+            </form>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="/" class="btn-voltar">Voltar para a vitrine</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 10px;">
+            <p style="margin: 5px 0;"><strong>Cupcake Store</strong></p>
+            <p style="margin: 5px 0;">E-mail: contato@cupcakestore.com | Tel: (11) 3456-7890</p>
+        </div>
+        <div style="font-size: 0.8em; margin-top: 20px; opacity: 0.8;">
+            <p>© 2025 por Cupcake Store. Desenvolvido com Python.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

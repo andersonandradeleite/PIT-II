@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Cupcake Store</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h1>CUPCAKE STORE</h1>
+
+        <nav class="navbar">
+            <a href="/">INÍCIO</a>
+
+            {% if cliente_nome %}
+                <span class="user-msg">Olá, {{ cliente_nome }}!</span>
+                <a href="/logout" style="color: #666; font-weight: 600; font-size: 0.9em;">SAIR</a>
+            {% else %}
+                <a href="/login" style="background-color: #5E4B56; color: white; padding: 8px 20px; border-radius: 20px; font-size: 0.9em;">LOGIN</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <div class="container-carrinho">
+            <h2>Seu Carrinho</h2>
+
+            {% if itens_carrinho %}
+                <table class="tabela-carrinho">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Preço</th>
+                            <th>Qtd</th>
+                            <th>Total</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in itens_carrinho %}
+                        <tr>
+                            <td class="produto-info-carrinho" style="display: flex; align-items: center;">
+                                <img src="{{ url_for('static', filename='img/' + item.imagem) }}"
+                                     alt="{{ item.nome }}"
+                                     class="img-thumb">
+                                <div>
+                                    <strong>{{ item.nome }}</strong><br>
+                                    <small style="color: #666;">{{ item.sabor }}</small>
+                                </div>
+                            </td>
+                            <td>R$ {{ "%.2f"|format(item.preco|float) }}</td>
+                            <td>{{ item.quantidade }}</td>
+                            <td>R$ {{ "%.2f"|format(item.preco * item.quantidade) }}</td>
+                            <td>
+                                <a href="/remover_item/{{ item.id_carrinho_item }}" style="color: red; text-decoration: none;">Excluir</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                <div class="total-carrinho" style="margin-top: 30px; text-align: right;">
+                    <h3>Total Estimado: R$ {{ "%.2f"|format(total_carrinho|float) }}</h3>
+                    <p style="color: #666; font-size: 0.9em;">Impostos e frete calculados no checkout.</p>
+
+                    <div style="margin-top: 20px;">
+                        <a href="/" class="btn-voltar" style="margin-right: 20px;">← Continuar Comprando</a>
+                        <button class="btn-checkout">Checkout</button>
+                    </div>
+                </div>
+
+            {% else %}
+                <div style="text-align: center; padding: 50px;">
+                    <p>Seu carrinho está vazio.</p>
+                    <a href="/" class="btn-checkout" style="text-decoration: none;">Ir para a Loja</a>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <footer>
+        <div style="margin-bottom: 10px;">
+            <p style="margin: 5px 0;"><strong>Cupcake Store</strong></p>
+            <p style="margin: 5px 0;">E-mail: contato@cupcakestore.com | Tel: (11) 3456-7890</p>
+        </div>
+        <div style="font-size: 0.8em; margin-top: 20px; opacity: 0.8;">
+            <p>© 2025 por Cupcake Store. Desenvolvido com Python.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

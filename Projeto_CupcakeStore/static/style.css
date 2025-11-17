@@ -1,0 +1,237 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFF0F5; 
+    color: #4a3b44; 
+}
+
+
+header {
+    background-color: #FFF0F5;
+    padding: 20px 50px;
+    display: flex; /* deixa o logo e o menu alinhados */
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #5E4B56;
+    font-size: 1.8em;
+    font-weight: 800; /* negrito forte */
+    letter-spacing: -1px;
+}
+
+
+.navbar {
+    display: flex;
+    gap: 30px; /* espaco entre os links */
+    align-items: center;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #5E4B56;
+    font-size: 1em;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.navbar a:hover {
+    color: #d9534f; /* fica rosa quando passa o mouse */
+}
+
+/* nome de quem esta logado */
+.user-msg {
+    color: #d9534f;
+    font-weight: 700;
+    margin-right: 15px;
+}
+
+/*  banner do inicio  */
+.hero-banner {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.hero-content h1 {
+    color: #4a3b44;
+    font-size: 3.5em; /* titulo bem grande */
+    font-weight: 800;
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.hero-content p {
+    color: #666;
+    font-size: 1.3em;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* botao do banner */
+.btn-hero {
+    background-color: #5E4B56;
+    color: white;
+    padding: 18px 50px;
+    text-decoration: none;
+    border-radius: 50px; /* redondinho */
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: transform 0.2s;
+}
+
+.btn-hero:hover {
+    transform: scale(1.05); /* efeito quando passa o mouse */
+    background-color: #4a3b44;
+}
+
+/*  ista dos produtos */
+main {
+    padding: 40px 20px;
+}
+
+main h2 {
+    text-align: center;
+    color: #5E4B56;
+    font-size: 2em;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.vitrine {
+    display: flex;
+    flex-wrap: wrap; /* se nao couber quebra linha */
+    justify-content: center;
+    gap: 30px;
+}
+
+/* cartao de cada cupcake */
+.produto {
+    background-color: #fff;
+    border: none;
+    border-radius: 15px;
+    padding: 0 0 20px 0;
+    width: 280px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); /* sombreado */
+    text-align: center;
+    transition: transform 0.3s;
+    overflow: hidden;
+}
+
+.produto:hover {
+    transform: translateY(-5px); /* sobe um pouquinho */
+}
+
+.produto img {
+    width: 100%;
+    height: 280px; /* trava altura da foto */
+    object-fit: cover; /* nao deixa a foto esticar */
+    margin-bottom: 15px;
+}
+
+.produto h3 {
+    color: #4a3b44;
+    font-size: 1.3em;
+    font-weight: 700;
+    margin: 10px 0;
+}
+
+.produto p.sabor {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.produto p.preco {
+    color: #4a3b44;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* estilo dos botoes padrao */
+.btn-detalhes, .btn-checkout, .produto-a {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #d9534f; /* cor principal */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-detalhes:hover, .btn-checkout:hover {
+    background-color: #c9302c;
+}
+
+
+footer {
+    text-align: center;
+    padding: 40px;
+    background-color: #FFF0F5;
+    color: #5E4B56;
+    margin-top: 50px;
+    font-weight: 600;
+}
+
+
+.container-carrinho, .produto-detalhe, .login-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.tabela-carrinho {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-carrinho th {
+    color: #888;
+    font-weight: 600;
+    padding: 15px;
+    text-align: left;
+    border-bottom: 2px solid #f4f4f4;
+}
+
+.tabela-carrinho td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #f4f4f4;
+    vertical-align: middle;
+}
+
+.img-thumb {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 15px;
+}
+
+.btn-voltar {
+    color: #5E4B56;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+input[type=text], input[type=email], input[type=password] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
